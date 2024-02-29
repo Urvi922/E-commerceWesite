@@ -9,6 +9,8 @@ const db = require('./util/database');
 
 const app = express();
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
+
 // app.engine('hbs', expressHbs({layoutsDir : 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' })); for handlebar donot delete
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -25,3 +27,6 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 app.listen(3000);
+
+module.exports = app;
+
