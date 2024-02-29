@@ -9,7 +9,6 @@ const db = require('./util/database');
 
 const app = express();
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
 
 // app.engine('hbs', expressHbs({layoutsDir : 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs' })); for handlebar donot delete
 app.set('view engine', 'ejs');
@@ -26,7 +25,17 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log(`API listening on PORT 3000 ${3000}`)
+});
+
+app.get('/', (req, res) => {
+    res.send('this is my API running')
+})
+
+app.get('/about', (req, res) => {
+    res.send('This is my about route......')
+})
 
 module.exports = app;
 
