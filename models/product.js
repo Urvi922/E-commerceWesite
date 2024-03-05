@@ -21,14 +21,21 @@ module.exports = class Product {
     } 
 
     static deleteById(id) {
-       
+        return db.execute('DELETE FROM products WHERE products.id =?', [id]);
     }
 
     static fetchAll() {
-        return db.execute('SELECT * FROM products')  
+        return db.execute('SELECT * FROM products');
     }
 
     static findById(id) {
         return db.execute('SELECT * FROM products WHERE products.id =?', [id]); 
+    }
+
+    static updateProduct(id, updatedTitle, updatedPrice, updatedImageUrl, updatedDes) {
+        return db.execute(
+            'UPDATE products SET title = ?, price = ?, imageUrl = ?, description = ? WHERE products.id = ?',
+            [updatedTitle, updatedPrice, updatedImageUrl, updatedDes, id]
+        )
     }
 };
